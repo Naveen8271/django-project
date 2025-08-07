@@ -1,0 +1,170 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    {% if form.errors %}
+        <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>User Registration</title>
+    <style>
+        /* Reset & base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+            color: #222;
+        }
+
+        form p {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.8px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #4A90E2;
+            box-shadow: 0 0 6px rgba(74, 144, 226, 0.6);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #357ABD;
+        }
+
+        ul.errorlist {
+            margin-top: 20px;
+            padding-left: 18px;
+            list-style: inside disc;
+            color: #c0392b;
+            font-weight: 600;
+            background: #fdecea;
+            border-radius: 6px;
+            border: 1px solid #e74c3c;
+        }
+
+        ul.errorlist li {
+            margin-bottom: 6px;
+        }
+
+        /* Animate fade in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+
+        {% if form.errors %}
+            <ul class="errorlist">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ field.label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
+

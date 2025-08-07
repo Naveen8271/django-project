@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+    <script src="{% static 'script/main.js' %}" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        header, section, footer {
+            max-width: 800px;
+            margin: auto;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            padding: 6px 0;
+            font-weight: 600;
+        }
+        address {
+            font-style: normal;
+            line-height: 1.5;
+            color: #555;
+        }
+        button.back-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button.back-btn:hover {
+            background-color: #1f6391;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+        <p>DHARAVATH NAVEEN</p>
+    </header>
+
+    <section id="mission">
+        <h2>Our Mission</h2>
+        <p>
+            We aim to deliver high-quality web solutions that help businesses thrive online.
+            Our team is dedicated to innovation, collaboration, and excellence.
+        </p>
+    </section>
+
+    <section id="team">
+        <h2>Meet the Team</h2>
+        <ul>
+            <li><strong>Alice Johnson</strong> - Project Manager</li>
+            <li><strong>Bob Smith</strong> - Lead Developer</li>
+            <li><strong>Carol Lee</strong> - UX Designer</li>
+            <li><strong>David Kim</strong> - QA Specialist</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out!</p>
+        <address>
+            Email: <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a><br />
+            Phone: +1 (555) 123-4567
+        </address>
+    </section>
+
+    <button class="back-btn" onclick="window.history.back()">← Back</button>
+
+    <footer>
+        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>

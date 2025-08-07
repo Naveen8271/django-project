@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>Home</title>
+   <style>
+      body {
+         margin: 0;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+         min-height: 100vh;
+         overflow-x: hidden;
+         display: flex;
+         flex-direction: column;
+      }
+
+      /* NAVIGATION BAR */
+      .navbar {
+         background-color: rgba(255, 255, 255, 0.95);
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 12px 40px;
+         box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+         position: sticky;
+         top: 0;
+         z-index: 1000;
+         animation: slideDown 1s ease forwards;
+      }
+
+      .nav-links {
+         display: flex;
+         gap: 22px;
+      }
+
+      .nav-links a {
+         text-decoration: none;
+         color: #333;
+         font-weight: 600;
+         font-size: 1rem;
+         position: relative;
+         padding-bottom: 4px;
+         transition: color 0.3s ease;
+      }
+
+      .nav-links a::after {
+         content: '';
+         position: absolute;
+         width: 0;
+         height: 2px;
+         left: 0;
+         bottom: 0;
+         background-color: #4A90E2;
+         transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus {
+         color: #4A90E2;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus::after {
+         width: 100%;
+      }
+
+      /* PROFILE DROPDOWN */
+      .profile {
+         position: relative;
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         font-size: 0.9rem;
+         color: #333;
+         cursor: pointer;
+      }
+
+      .profile-btn {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         background: none;
+         border: none;
+         font: inherit;
+         color: inherit;
+         cursor: pointer;
+         padding: 0;
+         user-select: none;
+      }
+
+      .profile-btn img {
+         width: 36px;
+         height: 36px;
+         border-radius: 50%;
+         object-fit: cover;
+         box-shadow: 0 0 5px rgba(0,0,0,0.15);
+      }
+
+      .dropdown-menu {
+         position: absolute;
+         top: 110%;
+         right: 0;
+         background: white;
+         border-radius: 6px;
+         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+         padding: 8px 0;
+         list-style: none;
+         margin: 0;
+         min-width: 140px;
+         z-index: 2000;
+      }
+
+      .dropdown-menu li {
+         padding: 0;
+      }
+
+      .dropdown-menu li a {
+         display: block;
+         padding: 10px 20px;
+         color: #333;
+         text-decoration: none;
+         font-weight: 500;
+         transition: background-color 0.2s ease;
+      }
+
+      .dropdown-menu li a:hover,
+      .dropdown-menu li a:focus {
+         background-color: #4A90E2;
+         color: white;
+         outline: none;
+      }
+
+      /* Hide dropdown initially */
+      .dropdown-menu[hidden] {
+         display: none;
+      }
+
+      /* MAIN CONTENT */
+      .container {
+         flex-grow: 1;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         padding: 0 20px 40px;
+         animation: fadeIn 2s ease forwards 0.5s;
+      }
+
+      h1 {
+         font-size: 3.2rem;
+         color: #222;
+         margin-bottom: 15px;
+         animation: slideDown 1.2s ease forwards;
+      }
+
+      h2 {
+         font-weight: 400;
+         color: #555;
+         margin-bottom: 35px;
+         font-size: 1.5rem;
+         animation: slideUp 1.2s ease forwards;
+      }
+
+      .btn {
+         padding: 14px 28px;
+         font-size: 1.1rem;
+         background-color: #4A90E2;
+         color: white;
+         border: none;
+         border-radius: 8px;
+         cursor: pointer;
+         text-decoration: none;
+         box-shadow: 0 5px 15px rgba(74,144,226,0.4);
+         transition: background-color 0.3s ease, box-shadow 0.3s ease;
+         animation: fadeIn 2s ease forwards 1.5s;
+      }
+
+      .btn:hover,
+      .btn:focus {
+         background-color: #357ABD;
+         box-shadow: 0 8px 25px rgba(53,122,189,0.6);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+         from {opacity: 0;}
+         to {opacity: 1;}
+      }
+
+      @keyframes slideDown {
+         from {transform: translateY(-30px); opacity: 0;}
+         to {transform: translateY(0); opacity: 1;}
+      }
+
+      @keyframes slideUp {
+         from {transform: translateY(30px); opacity: 0;}
+         to {transform: translateY(0); opacity: 1;}
+      }
+   </style>
+</head>
+<body>
+   <!-- Navigation Bar -->
+   <nav class="navbar">
+      <div class="nav-links">
+         <a href="{% url 'home' %}">Home</a>
+         <a href="{% url 'about' %}">About</a>
+         <a href="{% url 'contact' %}">Contact</a>
+         <a href="{% url 'register' %}">Register</a> 
+         <a href="{% url 'login' %}">Login</a><!-- Placeholder, can update to logout if auth implemented -->
+      </div>
+
+      <!-- User Profile Demo with Dropdown -->
+      <div class="profile" aria-label="User Profile">
+         <button class="profile-btn" aria-haspopup="true" aria-expanded="false" aria-controls="profile-dropdown">
+            <img src="https://avatars.dicebear.com/api/identicon/username.svg" alt="Profile Picture" />
+
+            <span>DemoUser &#x25BC;</span>
+         </button>
+         <ul class="dropdown-menu" id="profile-dropdown" role="menu" aria-label="Profile menu" hidden>
+            <li role="none"><a href="{% url 'profile' %}" role="menuitem">Profile</a></li>
+            <li role="none"><a href="{% url 'settings' %}" role="menuitem">Settings</a></li>
+            <li role="none"><a href="{% url 'terms' %}" role="menuitem">Terms</a></li>
+            <li role="none"><a href="{% url 'logout' %}" role="menuitem">Logout</a></li>
+         </ul>
+      </div>
+   </nav>
+
+   <!-- Main Content -->
+   <div class="container">
+      <h1>Welcome to Our Website!</h1>
+      <h2>Your portal to learning, progress, and results</h2>
+      <a href="{% url 'contact' %}" class="btn">View Students</a>
+   </div>
+
+   <script>
+      const profileBtn = document.querySelector('.profile-btn');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+
+      profileBtn.addEventListener('click', () => {
+         const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+         profileBtn.setAttribute('aria-expanded', !isExpanded);
+         if (dropdownMenu.hasAttribute('hidden')) {
+            dropdownMenu.removeAttribute('hidden');
+         } else {
+            dropdownMenu.setAttribute('hidden', '');
+         }
+      });
+
+      // Close dropdown if clicking outside
+      document.addEventListener('click', (e) => {
+         if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            dropdownMenu.setAttribute('hidden', '');
+            profileBtn.setAttribute('aria-expanded', 'false');
+         }
+      });
+   </script>
+</body>
+</html>
